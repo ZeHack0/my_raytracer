@@ -27,15 +27,15 @@ void write_color(Math::Vector3D color)
 int main(int ac, char **av) {
     (void)ac;
     (void)av;
+
     RayTracer::Camera camera;
     RayTracer::Sphere sphere(Math::Point3D(0, 0, -1), 0.5);
+    int width = 400;
+    int height = 400;
 
     camera.screen.origin = Math::Point3D(-1, -1, -1); 
     camera.screen.bottom_side = Math::Vector3D(2, 0, 0);
     camera.screen.left_side = Math::Vector3D(0, 2, 0);
-
-    int width = 400;
-    int height = 400;
 
     std::cout << "P3\n";
     std::cout << width << " " << height << "\n";
