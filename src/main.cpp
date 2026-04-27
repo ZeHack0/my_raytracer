@@ -24,10 +24,11 @@ void write_color(Math::Vector3D color)
     std::cout << color.X << " " << color.Y << " " << color.Z << "\n";
 }
 
-int main(void) {
+int main(int ac, char **av) {
+    (void)ac;
+    (void)av;
     RayTracer::Camera camera;
     RayTracer::Sphere sphere(Math::Point3D(0, 0, -1), 0.5);
-
 
     camera.screen.origin = Math::Point3D(-1, -1, -1); 
     camera.screen.bottom_side = Math::Vector3D(2, 0, 0);

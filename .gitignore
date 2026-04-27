@@ -14,3 +14,4 @@ vgcore.*
 
 # Fichiers spécifiques au projet
 raytracer
+*.ppm
