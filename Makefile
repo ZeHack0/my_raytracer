@@ -11,18 +11,20 @@ NAME = raytracer
 
 CC := g++
 
+UNAME_S := $(shell uname -s)
+
 BUILD_DIR := .build
 
 SRC := $(shell find src -name '*.cpp')
 OBJ := $(SRC:%.cpp=.build/%.o)
-
-LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
 
 ifeq ($(UNAME_S),Darwin)
 	RPATH = -Wl,-rpath,/usr/local/lib
 else
 	RPATH =
 endif
+
+LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system $(RPATH)
 
 GRE := \033[0;32m
 GRA := \033[0;37m
