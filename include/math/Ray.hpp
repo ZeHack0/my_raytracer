@@ -20,7 +20,7 @@
 
 #include "Vector3d.hpp"
 
-struct ray {
+struct Ray {
     Vector3d _origin;
     Vector3d _direction;
     double tMax = 1e9;

@@ -17,28 +17,24 @@
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-#pragma once
+#include "math/Transform.hpp"
 
-#include "IPrimitive.hpp"
-#include "../math/Vector3d.hpp"
-#include "../math/Color.hpp"
-#include "../math/Ray.hpp"
-#include "../math/HitInfo.hpp"
+Transform::Transform() {
+    _identity();
+}
 
-namespace RayTracer {
+void Transform::_identity() {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            _mat[i][j] = (i == j) ? 1.0 : 0.0;
+        }
+    }
+}
 
-    class Sphere : public IPrimitive {
+Vector3d Transform::apply(const Vector3d& v) const {
+    return v;
+}
 
-        public:
-            Sphere(const Vector3d& center, double radius, const Color& color);
-
-            HitInfo hits(const Ray& ray) const override;
-            void applyTransform(const Transform& t) override;
-            std::string getType() const override;
-
-        private:
-            Vector3d _center;
-            double _radius;
-            Color _color;
-    };
+double Transform::getUniformScale() const {
+    return 1.0;
 }

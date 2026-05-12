@@ -3,7 +3,7 @@
  * EPITECH PROJECT - Fri, May, 2026                                                     *
  * Title           - raytracer                                                          *
  * Description     -                                                                    *
- *     IPrimitive                                                                       *
+ *     Scene                                                                            *
  *                                                                                      *
  * ------------------------------------------------------------------------------------ *
  *                                                                                      *
@@ -17,17 +17,16 @@
 
 #pragma once
 
-#include <string>
-#include "../math/Ray.hpp"
-#include "../math/HitInfo.hpp"
-#include "../math/Transform.hpp"
+#include <vector>
+#include <memory>
+#include "Camera.hpp"
+#include "../primitive/IPrimitive.hpp"
+#include "../light/ILight.hpp"
 
-class IPrimitive {
+struct Scene {
+    Camera camera;
+    double ambientIntensity = 0.2;
 
-    public:
-        virtual ~IPrimitive() = default;
-
-        virtual HitInfo hits(const Ray& ray) const = 0;
-        virtual void applyTransform(const Transform& t) = 0;
-        virtual std::string getType() const = 0;
+    std::vector<std::unique_ptr<IPrimitive>> primitives;
+    std::vector<std::unique_ptr<ILight>> lights;
 };

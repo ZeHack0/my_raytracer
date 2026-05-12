@@ -3,7 +3,7 @@
  * EPITECH PROJECT - Fri, May, 2026                                                     *
  * Title           - raytracer                                                          *
  * Description     -                                                                    *
- *     IPrimitive                                                                       *
+ *     Transform                                                                        *
  *                                                                                      *
  * ------------------------------------------------------------------------------------ *
  *                                                                                      *
@@ -17,17 +17,23 @@
 
 #pragma once
 
-#include <string>
-#include "../math/Ray.hpp"
-#include "../math/HitInfo.hpp"
-#include "../math/Transform.hpp"
+#include "Vector3d.hpp"
 
-class IPrimitive {
+class Transform {
+public:
+    Transform();
 
-    public:
-        virtual ~IPrimitive() = default;
+    Transform& translate(const Vector3d& t);
+    Transform& rotate(const Vector3d& angles);
+    Transform& scale(double factor);
 
-        virtual HitInfo hits(const Ray& ray) const = 0;
-        virtual void applyTransform(const Transform& t) = 0;
-        virtual std::string getType() const = 0;
+    Vector3d apply(const Vector3d& v) const;
+    double getUniformScale() const;
+    Vector3d getTranslation() const;
+
+private:
+    double _mat[4][4];
+
+    void _identity();
+    void _multiply(const double other[4][4]);
 };

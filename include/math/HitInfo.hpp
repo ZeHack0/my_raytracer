@@ -22,7 +22,7 @@
 struct HitInfo {
     bool hit = false;
     double t = 0.0;
-    Vec3 point;
-    Vec3 normal;
+    Vector3d point;
+    Vector3d normal;
     Color color;
 };
