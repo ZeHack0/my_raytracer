@@ -15,8 +15,9 @@
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-#include "primitive/Sphere.hpp"
 #include <cmath>
+
+#include "primitive/Sphere.hpp"
 
 namespace RayTracer {
 

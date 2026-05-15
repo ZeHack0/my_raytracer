@@ -17,11 +17,13 @@
 
 #include <iostream>
 #include <vector>
+#include <SFML/Graphics.hpp>
+
 #include "primitive/Sphere.hpp"
+#include "primitive/Plane.hpp"
 #include "Camera.hpp"
 #include "math/Vector3d.hpp"
 #include "math/Color.hpp"
-#include <SFML/Graphics.hpp>
 
 int main(int ac, char **av) {
 
@@ -40,8 +42,9 @@ int main(int ac, char **av) {
     camera.position = {0, 0, 0};
 
     RayTracer::Sphere sphere(Vector3d{0, 0, -5}, 1.0, Color{255, 0, 0});
+    RayTracer::Plane plane('y', -1.0, Color{0, 126, 0});
 
-    sf::RenderWindow window(sf::VideoMode(width, height), "Ray Tracer");
+    sf::RenderWindow window(sf::VideoMode(width, height), "RayTracer");
     sf::Image image;
     image.create(width, height);
 
@@ -50,8 +53,16 @@ int main(int ac, char **av) {
             Ray ray = camera.generateRay(x, y);
             HitInfo hit = sphere.hits(ray);
 
+            if (!hit.hit) {
+                hit = plane.hits(ray);
+            }
+
             if (hit.hit) {
-                image.setPixel(x, y, sf::Color(255, 0, 0));
+                if (hit.color.r == 255) {
+                    image.setPixel(x, y, sf::Color(255, 0, 0));
+                } else {
+                    image.setPixel(x, y, sf::Color(0, 126, 0));
+                }
             } else {
                 image.setPixel(x, y, sf::Color(0, 0, 255));
             }

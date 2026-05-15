@@ -17,23 +17,27 @@
  * ------------------------------------------------------------------------------------ */
 
 #pragma once
+
 #include "IPrimitive.hpp"
 #include "../math/Vector3d.hpp"
 #include "../math/Color.hpp"
 #include "../math/Ray.hpp"
 #include "../math/HitInfo.hpp"
 
-class Plane : public IPrimitive {
+namespace RayTracer {
 
-    public:
-        Plane(char axis, double position, const Color& color);
+    class Plane : public IPrimitive {
 
-        HitInfo hits(const Ray& ray) const override;
-        void applyTransform(const Transform& t) override;
-        std::string getType() const override;
+        public:
+            Plane(char axis, double position, const Color& color);
 
-    private:
-        char _axis;
-        double _position;
-        Color _color;
-};
+            HitInfo hits(const Ray& ray) const override;
+            void applyTransform(const Transform& t) override;
+            std::string getType() const override;
+
+        private:
+            char _axis;
+            double _position;
+            Color _color;
+    };
+}

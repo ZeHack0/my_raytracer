@@ -28,7 +28,7 @@
 class Cylinder : public IPrimitive {
 
     public:
-        Cylinder(const Vec3& center, double radius,
+        Cylinder(const Vector3d& center, double radius,
                 double height, const Color& color);
 
         HitInfo hits(const Ray& ray) const override;
@@ -39,7 +39,7 @@ class Cylinder : public IPrimitive {
         HitInfo hitBody(const Ray& ray) const;
         HitInfo hitCaps(const Ray& ray) const;
 
-        Vec3 _center;
+        Vector3d _center;
         double _radius;
         double _height;
         Color _color;

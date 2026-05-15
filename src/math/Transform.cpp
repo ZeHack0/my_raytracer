@@ -38,3 +38,7 @@ Vector3d Transform::apply(const Vector3d& v) const {
 double Transform::getUniformScale() const {
     return 1.0;
 }
+
+Vector3d Transform::getTranslation() const {
+    return Vector3d{_mat[0][3], _mat[1][3], _mat[2][3]};
+}
